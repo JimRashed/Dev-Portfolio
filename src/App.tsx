@@ -1,8 +1,10 @@
 import "./App.css";
-
+import { MenuChoice } from "./components/MenuChoice";
 function App() {
 	return (
-		<h1 className="text-3xl font-bold underline backdrop-blur-3xl">Hello !</h1>
+		<>
+			<MenuChoice />
+		</>
 	);
 }
 

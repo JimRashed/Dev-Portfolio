@@ -1,0 +1,9 @@
+.header-bar{
+    border-bottom: 1px solid var(--color-border);
+    color: var(--muted)
+}
+
+.greeting{
+    color:var(--secondary-foreground);
+}
+
