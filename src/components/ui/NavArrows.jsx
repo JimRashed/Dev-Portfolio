@@ -1,7 +1,7 @@
 import { useProjects } from '../../context/ProjectContext';
 import './ui.css';
 
-export default function NavigationArrows() {
+export default function NavArrows() {
   const { prevProject, nextProject, prevMedia, nextMedia } = useProjects();
 
   return (

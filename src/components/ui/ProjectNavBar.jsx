@@ -1,7 +1,7 @@
 import { useProjects } from '../../context/ProjectContext';
 import './ui.css';
 
-export default function RightNavRail() {
+export default function ProjectNavBar() {
   const { projects, projectIndex, goToProject } = useProjects();
 
   return (
