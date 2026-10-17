@@ -1,0 +1,236 @@
+/* ==================== GLOBAL APP LAYOUT ==================== */
+.app-container {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #d1d5db; /* Light gray backdrop */
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  color: #1f2937;
+  user-select: none;
+}
+
+/* ==================== 1. LEFT SIDEBAR ==================== */
+.left-sidebar {
+  width: 320px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  box-sizing: border-box;
+  background-color: #c9cdd4;
+  border-right: 2px solid #6b7280;
+  overflow-y: auto;
+  gap: 16px;
+  z-index: 10;
+}
+
+.back-btn {
+  background: none;
+  border: none;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #374151;
+  text-align: left;
+  padding: 0;
+  width: fit-content;
+  transition: transform 0.15s ease;
+}
+
+.back-btn:hover {
+  transform: translateX(-4px);
+}
+
+.sidebar-header {
+  border-bottom: 2px solid #9ca3af;
+  padding-bottom: 8px;
+}
+
+.project-title {
+  margin: 0;
+  font-size: 1.5rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #f3f4f6;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.project-description {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #374151;
+  flex-grow: 1;
+}
+
+.video-container {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 2px solid #4b5563;
+  background-color: #000;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.video-frame {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* ==================== 2. CENTER STAGE & ARROWS ==================== */
+.center-viewport {
+  position: relative;
+  flex: 1;
+  height: 100%;
+  overflow: hidden;
+}
+
+.arrows-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none; /* Allows interaction to pass through to the 3D scene */
+  z-index: 10;
+}
+
+.arrow-btn {
+  position: absolute;
+  pointer-events: auto; /* Re-enable pointer events for buttons only */
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px solid #4b5563;
+  color: #374151;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+  transition: background-color 0.2s, transform 0.2s, color 0.2s;
+}
+
+.arrow-btn:hover {
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #111827;
+  transform: scale(1.1);
+}
+
+.arrow-btn.up {
+  top: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.arrow-btn.up:hover {
+  transform: translateX(-50%) translateY(-3px);
+}
+
+.arrow-btn.down {
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.arrow-btn.down:hover {
+  transform: translateX(-50%) translateY(3px);
+}
+
+.arrow-btn.left {
+  left: 32px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.arrow-btn.left:hover {
+  transform: translateY(-50%) translateX(-3px);
+}
+
+.arrow-btn.right {
+  right: 32px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.arrow-btn.right:hover {
+  transform: translateY(-50%) translateX(3px);
+}
+
+/* ==================== 3. RIGHT NAV RAIL ==================== */
+.right-nav-rail {
+  width: 90px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.nav-track {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  gap: 20px;
+}
+
+/* The vertical connector line linking the dots */
+.nav-track::before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  bottom: 10px;
+  width: 2px;
+  background-color: #6b7280;
+  z-index: 0;
+}
+
+.nav-dot-container {
+  position: relative;
+  z-index: 1;
+}
+
+.nav-dot {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: #f3f4f6;
+  border: 2px solid #4b5563;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: block;
+}
+
+.nav-dot:hover {
+  transform: scale(1.2);
+  background-color: #ffffff;
+}
+
+/* Grayed out / Active state */
+.nav-dot.active {
+  background-color: #4b5563;
+  border-color: #1f2937;
+  transform: scale(1.15);
+  box-shadow: 0 0 8px rgba(75, 85, 99, 0.6);
+}
+
+/* Tooltip on hover */
+.nav-tooltip {
+  position: absolute;
+  right: 34px;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #1f2937;
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.nav-dot-container:hover .nav-tooltip {
+  opacity: 1;
+  transform: translateY(-50%) translateX(-4px);
+}
